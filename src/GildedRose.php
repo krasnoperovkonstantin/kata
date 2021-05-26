@@ -19,28 +19,28 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            $this->routeTypeProduct($item);
+            $item = $this->makeProduct($item)->update();
         }
     }
 
-    private function routeTypeProduct(&$item): void
+    private function makeProduct($item): Object
     {
-        if (AgedBrie::checkBackstage($item)) {
-            new AgedBrie ($item);
-            return;
+        if (Product\AgedBrie::checkName($item))
+        {
+            return new Product\AgedBrie ($item);
         }
-        if (Conjured::checkBackstage($item)) {
-            new Conjured ($item);
-            return;
+        if (Product\Sulfuras::checkName($item))
+        {
+            return new Product\Sulfuras ($item);
         }
-        if (Sulfuras::checkBackstage($item)) {
-            new Sulfuras ($item);
-            return;
+        if (Product\Backstage::checkName($item))
+        {
+            return new Product\Backstage ($item);
         }
-        if (Backstage::checkBackstage($item)) {
-            new Backstage ($item);
-            return;
+        if (Product\Conjured::checkName($item))
+        {
+            return new Product\Conjured ($item);
         }
-        new Other ($item);
+        return new Product\BaseProduct ($item);
     }
 }
