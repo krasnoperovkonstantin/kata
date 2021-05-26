@@ -25,19 +25,19 @@ final class GildedRose
 
     private function routeTypeProduct(&$item): void
     {
-        if ($item->name === 'Aged Brie') {
+        if (AgedBrie::checkBackstage($item)) {
             new AgedBrie ($item);
             return;
-        } 
-        if ($item->name === 'Conjured Mana Cake') {
+        }
+        if (Conjured::checkBackstage($item)) {
             new Conjured ($item);
             return;
-        } 
-        if ($item->name === 'Sulfuras, Hand of Ragnaros') {
+        }
+        if (Sulfuras::checkBackstage($item)) {
             new Sulfuras ($item);
             return;
-        } 
-        if ($item->name === 'Backstage passes to a TAFKAL80ETC concert') {
+        }
+        if (Backstage::checkBackstage($item)) {
             new Backstage ($item);
             return;
         }

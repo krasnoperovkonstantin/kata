@@ -6,6 +6,11 @@ namespace GildedRose;
 
 class Conjured extends Product
 {
+    static function checkBackstage($item): bool
+    {
+        return $item->name === 'Conjured Mana Cake';
+    }
+
     public function __construct(&$item)
     {
         if ($this->checkNotExpired($item)) {

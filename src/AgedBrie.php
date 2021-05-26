@@ -6,6 +6,11 @@ namespace GildedRose;
 
 class AgedBrie extends Product
 {
+    static function checkBackstage($item): bool
+    {
+        return $item->name === 'Aged Brie';
+    }
+
     public function __construct(&$item)
     {
         $this->changeQuality($item, 1);

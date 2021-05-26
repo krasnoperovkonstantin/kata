@@ -6,6 +6,11 @@ namespace GildedRose;
 
 class Backstage extends Product
 {
+    static function checkBackstage($item): bool
+    {
+        return $item->name === 'Backstage passes to a TAFKAL80ETC concert';
+    }
+
     public function __construct(&$item)
     {
         if ($this->checkExpired($item)) {
