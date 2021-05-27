@@ -47,16 +47,21 @@ class BaseProduct
     }
 
     public function update(): Object
+    { 
+        $this->updateQuality();
+        $this->decrementSell_in();
+        return $this->item;
+    }
+
+    public function updateQuality(): void
     {
         if ($this->checkNotExpired()) {
             $this->changeQuality(get_called_class()::CHANGE_QUALITY_NOT_EXPECT);
         } else {
             $this->changeQuality(get_called_class()::CHANGE_QUALITY_EXPECT);
         }
-        $this->decrementSell_in();
-        return $this->item;
     }
-
+    
     public function setQuality(int $value): void
     {
         if ($value < self::DOWN_LIMIT_QUALITY) {

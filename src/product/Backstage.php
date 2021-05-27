@@ -45,15 +45,8 @@ class Backstage extends BaseProduct
      * @var int
      */
     private const SET_QUALITY_EXPECT = 0;
-
-    function update(): Object
-    { 
-        $this->updateQuality();
-        $this->decrementSell_in();
-        return $this->item;
-    }
     
-    private function updateQuality(): void
+    function updateQuality(): void
     {
         if ($this->checkPeriodMin(self::POINT_END_PERIOD_1)) {
             $this->changeQuality(self::CHANGE_QUALITY_PERIOD_1);
