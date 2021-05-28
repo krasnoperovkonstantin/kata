@@ -19,7 +19,7 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            $item = $this->makeProduct($item)->update();
+            $this->makeProduct($item)->update();
         }
     }
 

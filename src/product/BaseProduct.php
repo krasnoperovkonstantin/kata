@@ -46,11 +46,10 @@ class BaseProduct
         return $item->name === get_called_class()::CHECK_NAME;
     }
 
-    public function update(): Object
+    public function update(): void
     { 
         $this->updateQuality();
         $this->decrementSell_in();
-        return $this->item;
     }
 
     public function updateQuality(): void

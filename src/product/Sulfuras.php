@@ -11,8 +11,8 @@ class Sulfuras extends BaseProduct
      */
     const CHECK_NAME = 'Sulfuras, Hand of Ragnaros';
 
-    function update(): Object
+    function update(): void
     {
-        return $this->item;
+    // ничего не делаем, продукт легендарный
     }
 }

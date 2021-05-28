@@ -17,10 +17,9 @@ class AgedBrie extends BaseProduct
      */
     const CHECK_NAME = 'Aged Brie';
 
-    function update(): Object
+    function update(): void
     {
         $this->changeQuality(self::CHANGE_QUALITY);
         $this->decrementSell_in();
-        return $this->item;
     }
 }
