@@ -10,7 +10,7 @@ class AgedBrie extends BaseProduct
     /**
      * @var int
      */
-    private const CHANGE_QUALITY = 1;
+    protected const CHANGE_QUALITY = 1;
 
     /**
      * @var string
@@ -19,7 +19,7 @@ class AgedBrie extends BaseProduct
 
     function update(): void
     {
-        $this->changeQuality(self::CHANGE_QUALITY);
+        $this->changeQuality(static::CHANGE_QUALITY);
         $this->decrementSell_in();
     }
 }

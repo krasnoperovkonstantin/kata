@@ -14,60 +14,60 @@ class Backstage extends BaseProduct
     /**
      * @var int
      */
-    private const CHANGE_QUALITY_PERIOD_1 = 1;
+    protected const CHANGE_QUALITY_PERIOD_1 = 1;
 
     /**
      * @var int
      */
-    private const CHANGE_QUALITY_PERIOD_2 = 2;
+    protected const CHANGE_QUALITY_PERIOD_2 = 2;
 
     /**
      * @var int
      */
-    private const CHANGE_QUALITY_PERIOD_3 = 3;
+    protected const CHANGE_QUALITY_PERIOD_3 = 3;
 
     /**
      * @var int
      */
-    private const POINT_END_PERIOD_1 = 10;
+    protected const POINT_END_PERIOD_1 = 10;
 
     /**
      * @var int
      */
-    private const POINT_END_PERIOD_2 = 5;
+    protected const POINT_END_PERIOD_2 = 5;
 
     /**
      * @var int
      */
-    private const POINT_END_PERIOD_3 = 0;
+    protected const POINT_END_PERIOD_3 = 0;
 
     /**
      * @var int
      */
-    private const SET_QUALITY_EXPECT = 0;
+    protected const SET_QUALITY_EXPECT = 0;
     
     function updateQuality(): void
     {
-        if ($this->checkPeriodMin(self::POINT_END_PERIOD_1)) {
-            $this->changeQuality(self::CHANGE_QUALITY_PERIOD_1);
+        if ($this->checkPeriodMin(static::POINT_END_PERIOD_1)) {
+            $this->changeQuality(static::CHANGE_QUALITY_PERIOD_1);
         }
-        if ($this->checkPeriod(self::POINT_END_PERIOD_2, self::POINT_END_PERIOD_1)) {
-            $this->changeQuality(self::CHANGE_QUALITY_PERIOD_2);
+        if ($this->checkPeriod(static::POINT_END_PERIOD_2, static::POINT_END_PERIOD_1)) {
+            $this->changeQuality(static::CHANGE_QUALITY_PERIOD_2);
         }
-        if ($this->checkPeriod(self::POINT_END_PERIOD_3, self::POINT_END_PERIOD_2)) {
-            $this->changeQuality(self::CHANGE_QUALITY_PERIOD_3);
+        if ($this->checkPeriod(static::POINT_END_PERIOD_3, static::POINT_END_PERIOD_2)) {
+            $this->changeQuality(static::CHANGE_QUALITY_PERIOD_3);
         } 
         if (!$this->checkNotExpired()) {
-            $this->setQuality(self::SET_QUALITY_EXPECT);
+            $this->setQuality(static::SET_QUALITY_EXPECT);
         }
     }
 
-    public function checkPeriod($min, $max): bool
+    protected function checkPeriod($min, $max): bool
     {
         return $this->item->sell_in <= $max and $this->item->sell_in > $min;
     }
 
-    public function checkPeriodMin($min): bool
+    protected function checkPeriodMin($min): bool
     {
         return $this->item->sell_in > $min;
     }

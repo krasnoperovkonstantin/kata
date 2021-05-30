@@ -9,32 +9,32 @@ class BaseProduct
     /**
      * @var int
      */
-    public const UP_LIMIT_QUALITY = 50;
+    protected const UP_LIMIT_QUALITY = 50;
 
     /**
      * @var int
      */
-    public const DOWN_LIMIT_QUALITY = 0;
+    protected const DOWN_LIMIT_QUALITY = 0;
 
     /**
      * @var int
      */
-    public const CHANGE_QUALITY_NOT_EXPECT = -1;
+    protected const CHANGE_QUALITY_NOT_EXPECT = -1;
 
     /**
      * @var int
      */
-    public const CHANGE_QUALITY_EXPECT = -2;
+    protected const CHANGE_QUALITY_EXPECT = -2;
 
     /**
      * @var string
      */
-    public const CHECK_NAME = '';
+    protected const CHECK_NAME = '';
 
     /**
      * @var Item
      */
-    public $item;
+    protected $item;
 
     public function __construct($item)
     {
@@ -43,7 +43,7 @@ class BaseProduct
 
     static function checkName($item): bool
     {
-        return $item->name === get_called_class()::CHECK_NAME;
+        return $item->name === static::CHECK_NAME;
     }
 
     public function update(): void
@@ -52,39 +52,39 @@ class BaseProduct
         $this->decrementSell_in();
     }
 
-    public function updateQuality(): void
+    protected function updateQuality(): void
     {
         if ($this->checkNotExpired()) {
-            $this->changeQuality(get_called_class()::CHANGE_QUALITY_NOT_EXPECT);
+            $this->changeQuality(static::CHANGE_QUALITY_NOT_EXPECT);
         } else {
-            $this->changeQuality(get_called_class()::CHANGE_QUALITY_EXPECT);
+            $this->changeQuality(static::CHANGE_QUALITY_EXPECT);
         }
     }
     
-    public function setQuality(int $value): void
+    protected function setQuality(int $value): void
     {
-        if ($value < self::DOWN_LIMIT_QUALITY) {
-            $this->item->quality = self::DOWN_LIMIT_QUALITY;
+        if ($value < static::DOWN_LIMIT_QUALITY) {
+            $this->item->quality = static::DOWN_LIMIT_QUALITY;
             return;
         }
-        if ($value > self::UP_LIMIT_QUALITY) {
-            $this->item->quality = self::UP_LIMIT_QUALITY;
+        if ($value > static::UP_LIMIT_QUALITY) {
+            $this->item->quality = static::UP_LIMIT_QUALITY;
             return;
         }
         $this->item->quality = $value;
     }
 
-    public function changeQuality(int $value): void
+    protected function changeQuality(int $value): void
     {
         $this->setQuality($this->item->quality + $value);
     }
     
-    public function decrementSell_in(): void
+    protected function decrementSell_in(): void
     {
         $this->item->sell_in--;
     }
 
-    public function checkNotExpired(): bool
+    protected function checkNotExpired(): bool
     {
         return $this->item->sell_in > 0;
     }
