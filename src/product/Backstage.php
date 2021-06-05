@@ -7,11 +7,6 @@ namespace GildedRose\Product;
 class Backstage extends BaseProduct
 {
     /**
-     * @var string
-     */
-    const CHECK_NAME = 'Backstage passes to a TAFKAL80ETC concert';
-
-    /**
      * @var int
      */
     protected const CHANGE_QUALITY_PERIOD_1 = 1;
@@ -62,12 +57,12 @@ class Backstage extends BaseProduct
         }
     }
 
-    protected function checkPeriod($min, $max): bool
+    protected function checkPeriod(int $min, int $max): bool
     {
-        return $this->item->sell_in <= $max and $this->item->sell_in > $min;
+        return $this->item->sell_in <= $max && $this->item->sell_in > $min;
     }
 
-    protected function checkPeriodMin($min): bool
+    protected function checkPeriodMin(int $min): bool
     {
         return $this->item->sell_in > $min;
     }

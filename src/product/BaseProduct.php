@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GildedRose\Product;
 
-class BaseProduct
+class BaseProduct implements ProductInterface
 {
     /**
      * @var int
@@ -25,12 +25,7 @@ class BaseProduct
      * @var int
      */
     protected const CHANGE_QUALITY_EXPECT = -2;
-
-    /**
-     * @var string
-     */
-    protected const CHECK_NAME = '';
-
+    
     /**
      * @var Item
      */
@@ -39,11 +34,6 @@ class BaseProduct
     public function __construct($item)
     {
         $this->item = $item;
-    }
-
-    static function checkName($item): bool
-    {
-        return $item->name === static::CHECK_NAME;
     }
 
     public function update(): void

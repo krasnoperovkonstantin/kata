@@ -11,6 +11,16 @@ final class GildedRose
      */
     private $items;
 
+    /**
+     * @var ProductCreator
+     */
+    private $creator;
+
+    /**
+     * @var ProductInterface
+     */
+    private $product;
+
     public function __construct(array $items)
     {
         $this->items = $items;
@@ -19,28 +29,9 @@ final class GildedRose
     public function updateQuality(): void
     {
         foreach ($this->items as $item) {
-            $this->makeProduct($item)->update();
+            $creator = new Product\ProductCreator($item);
+            $product = $creator->makeProduct();
+            $product->update();   
         }
-    }
-
-    private function makeProduct($item): Object
-    {
-        if (Product\AgedBrie::checkName($item))
-        {
-            return new Product\AgedBrie ($item);
-        }
-        if (Product\Sulfuras::checkName($item))
-        {
-            return new Product\Sulfuras ($item);
-        }
-        if (Product\Backstage::checkName($item))
-        {
-            return new Product\Backstage ($item);
-        }
-        if (Product\Conjured::checkName($item))
-        {
-            return new Product\Conjured ($item);
-        }
-        return new Product\BaseProduct ($item);
     }
 }
